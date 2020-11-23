@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wys.redislearn.dao.AccountMapper">
+    <cache type="com.wys.redislearn.cache.RedisCache"/>
+<!--<cache-ref namespace="com.wys.redislearn.dao.AccountMapper"/> 如AccountMapper中有另一类Dept，开启缓存与AccountMapper一致位置-->
+    <select id="selectAll" resultType="com.wys.redislearn.entity.NewTable">
+        select * from new_table;
+    </select>
+
+    <select id="getNewTableById" parameterType="int" resultType="com.wys.redislearn.entity.NewTable">
+        select * from new_table where id=#{id};
+    </select>
+
+    <insert id="save" parameterType="com.wys.redislearn.dao.AccountMapper">
+        insert into new_table(name) values(#{name});
+    </insert>
+
+    <delete id="del" parameterType="int">
+        delete from new_table where id=#{id};
+    </delete>
+</mapper>
